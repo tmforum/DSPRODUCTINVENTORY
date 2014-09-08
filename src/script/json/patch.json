@@ -1,0 +1,9 @@
+{
+    "status": "terminated",
+    "isCustomerVisible": false,
+    "productOffering": 
+    {
+            "id": "http://server:port/catalogApi/productOffering/4",
+            "name": "My Quick BB Offer MODIFIED"            
+    }
+}

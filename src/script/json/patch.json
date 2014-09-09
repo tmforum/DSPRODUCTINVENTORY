@@ -5,5 +5,10 @@
     {
             "id": "http://server:port/catalogApi/productOffering/4",
             "name": "My Quick BB Offer MODIFIED"            
-    }
+    },
+    "productCharacteristics":[   
+    {   
+            "name":"speed",   
+            "value":"64M"  
+    }]
 }

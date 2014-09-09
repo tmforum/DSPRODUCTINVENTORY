@@ -43,7 +43,7 @@ import tmf.org.dsmapi.commons.utils.PATCH;
 import tmf.org.dsmapi.hub.service.PublisherLocal;
 
 @Stateless
-@Path("productInventory")
+@Path("productInventory/product")
 public class ProductInventoryFacadeREST {
 
     @EJB

@@ -68,19 +68,20 @@
 		{
 			"id": "1038c261-9246-0cb8-0281-bd6d01ffaf70",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSProductInventory/webresources/productInventory/admin/2",
-			"pathVariables": {},
+			"url": "http://localhost:8080/DSProductInventory/webresources/productInventory/admin/:id",
 			"preRequestScript": "",
+			"pathVariables": {
+				"id": "2"
+			},
 			"method": "DELETE",
 			"dataMode": "binary",
+			"version": 2,
+			"tests": "",
+			"time": 1410359281216,
 			"name": "delete one",
 			"description": "delete a product",
-			"descriptionFormat": "html",
-			"time": 1410252526877,
-			"version": 2,
-			"responses": [],
-			"tests": "",
 			"collectionId": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",
+			"responses": [],
 			"synced": false
 		},
 		{
@@ -182,20 +183,21 @@
 		{
 			"id": "78d2152d-a2bd-1a84-d564-9e482cc75489",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSProductInventory/webresources/productInventory/product/",
-			"pathVariables": {},
+			"url": "http://localhost:8080/DSProductInventory/webresources/productInventory/product/:id",
 			"preRequestScript": "",
+			"pathVariables": {
+				"id": "2"
+			},
 			"method": "GET",
 			"data": [],
 			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1410359160958,
 			"name": "find one product",
 			"description": "select one products with id",
-			"descriptionFormat": "html",
-			"time": 1410244832833,
-			"version": 2,
-			"responses": [],
-			"tests": "",
 			"collectionId": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",
+			"responses": [],
 			"synced": false
 		},
 		{
@@ -227,7 +229,7 @@
 			"method": "GET",
 			"data": [],
 			"dataMode": "params",
-			"name": "find",
+			"name": "find all",
 			"description": "select all products",
 			"descriptionFormat": "html",
 			"time": 1410244524148,
@@ -259,15 +261,17 @@
 		{
 			"id": "aedbfe51-0471-4cba-a9b7-24bbf72d2d4a",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSProductInventory/webresources/productInventory/product/2",
+			"url": "http://localhost:8080/DSProductInventory/webresources/productInventory/product/:id",
 			"preRequestScript": "",
-			"pathVariables": {},
+			"pathVariables": {
+				"id": "2"
+			},
 			"method": "PATCH",
 			"data": [],
 			"dataMode": "raw",
 			"version": 2,
 			"tests": "",
-			"time": 1410252265326,
+			"time": 1410359219311,
 			"name": "partial update",
 			"description": "partial modification of a product",
 			"collectionId": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",

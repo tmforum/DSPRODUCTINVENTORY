@@ -1,4 +1,4 @@
-package tmf.org.dsmapi.catalog;
+package tmf.org.dsmapi.catalog.model;
 
 import java.util.HashSet;
 import java.util.Set;

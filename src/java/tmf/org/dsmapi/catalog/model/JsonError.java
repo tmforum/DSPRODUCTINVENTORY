@@ -1,4 +1,4 @@
-package tmf.org.dsmapi.catalog;
+package tmf.org.dsmapi.catalog.model;
 
 import tmf.org.dsmapi.commons.exceptions.KeyValue;
 import java.util.ArrayList;

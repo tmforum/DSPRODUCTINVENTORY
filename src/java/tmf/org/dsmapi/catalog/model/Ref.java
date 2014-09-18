@@ -2,18 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package tmf.org.dsmapi.catalog;
+package tmf.org.dsmapi.catalog.model;
 
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
-
+/**
+ *
+ * @author pierregauthier
+ */
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 @Embeddable
-public class RefInfo implements Serializable {
+public class Ref implements Serializable {
     
     String id;
-    String name;
+  
 
     public String getId() {
         return id;
@@ -23,12 +26,4 @@ public class RefInfo implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
 }

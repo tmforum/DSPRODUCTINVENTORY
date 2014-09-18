@@ -12,7 +12,7 @@ import tmf.org.dsmapi.hub.Hub;
  * @author pierregauthier
  */
 @Local
-public interface RESTEventPublisherLocal {
+public interface IClientEventPublisher {
 
     public void publish(Hub hub, Object event);
     

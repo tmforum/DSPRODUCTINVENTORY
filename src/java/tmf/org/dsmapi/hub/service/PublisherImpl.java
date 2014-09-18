@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import tmf.org.dsmapi.catalog.ProductInventory;
+import tmf.org.dsmapi.catalog.model.ProductInventory;
 import tmf.org.dsmapi.commons.exceptions.BadUsageException;
 import tmf.org.dsmapi.hub.Hub;
 import tmf.org.dsmapi.hub.Event;
@@ -25,14 +25,14 @@ import tmf.org.dsmapi.hub.ProductInventoryEventTypeEnum;
 @Stateless
 //@Asynchronous bug in 7.3
 @Asynchronous
-public class Publisher implements PublisherLocal {
+public class PublisherImpl implements IPublisher {
 
     @EJB
-    HubFacade hubFacade;
+    HubManager hubManager;
     @EJB
-    EventFacade hubEventFacade;
+    EventManager eventManager;
     @EJB
-    RESTEventPublisherLocal restEventPublisher;
+    IClientEventPublisher clientEventPublisher;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -51,18 +51,18 @@ public class Publisher implements PublisherLocal {
             try {
                 Event hubEvent = (Event)event;
                 hubEvent.setId(null);
-                hubEventFacade.create(hubEvent);
+                eventManager.create(hubEvent);
                 id = hubEvent.getId();
             } catch (BadUsageException ex) {
-                Logger.getLogger(Publisher.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PublisherImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
-        List<Hub> hubList = hubFacade.findAll();
+        List<Hub> hubList = hubManager.findAll();
         Iterator<Hub> it = hubList.iterator();
         while (it.hasNext()) {
             Hub hub = it.next();
-            restEventPublisher.publish(hub, event);
+            clientEventPublisher.publish(hub, event);
         }
         System.out.println("Sending Event After, id of event : "+id);
     }

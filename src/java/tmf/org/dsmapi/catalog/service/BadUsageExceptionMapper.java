@@ -7,7 +7,7 @@ package tmf.org.dsmapi.catalog.service;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
-import tmf.org.dsmapi.catalog.JsonError;
+import tmf.org.dsmapi.catalog.model.JsonError;
 import tmf.org.dsmapi.commons.exceptions.BadUsageException;
 
 @Provider

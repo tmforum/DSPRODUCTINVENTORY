@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package tmf.org.dsmapi.catalog;
+package tmf.org.dsmapi.catalog.model;
 
 import java.io.Serializable;
 import java.util.Date;

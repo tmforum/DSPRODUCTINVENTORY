@@ -19,10 +19,10 @@ import tmf.org.dsmapi.hub.Event;
  */
 @Stateless
 @Asynchronous
-public class RESTEventPublisher implements RESTEventPublisherLocal {
+public class ClientEventPublisherImpl implements IClientEventPublisher {
 
     @EJB
-    EventFacade manager;
+    EventManager manager;
 
     @Override
     public void publish(Hub hub, Object event) {

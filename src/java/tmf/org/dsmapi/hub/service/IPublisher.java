@@ -6,7 +6,7 @@ package tmf.org.dsmapi.hub.service;
 
 import java.util.Date;
 import javax.ejb.Local;
-import tmf.org.dsmapi.catalog.ProductInventory;
+import tmf.org.dsmapi.catalog.model.ProductInventory;
 
 
 /**
@@ -14,7 +14,7 @@ import tmf.org.dsmapi.catalog.ProductInventory;
  * @author pierregauthier
  */
 @Local
-public interface PublisherLocal {
+public interface IPublisher {
 
     void publish(Object event);
 

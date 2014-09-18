@@ -33,7 +33,7 @@ import tmf.org.dsmapi.commons.utils.TMFDate;
  *
  * @author pierregauthier
  */
-public abstract class AbstractFacade<T> {
+public abstract class AbstractManager<T> {
 
 
     private Class<T> entityClass;
@@ -44,7 +44,7 @@ public abstract class AbstractFacade<T> {
      *
      * @param entityClass
      */
-    public AbstractFacade(Class<T> entityClass) {
+    public AbstractManager(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
@@ -210,7 +210,7 @@ public abstract class AbstractFacade<T> {
             resultsList = q.getResultList();
             return resultsList;
         } catch (Exception ex) {
-            Logger.getLogger(AbstractFacade.class.getName()).log(Level.INFO, "findByCriteria error, null result returned", ex);
+            Logger.getLogger(AbstractManager.class.getName()).log(Level.INFO, "findByCriteria error, null result returned", ex);
             return null;
         }
     }

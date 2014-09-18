@@ -14,14 +14,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-import tmf.org.dsmapi.catalog.ProductInventory;
-import tmf.org.dsmapi.catalog.Report;
+import tmf.org.dsmapi.catalog.model.ProductInventory;
+import tmf.org.dsmapi.catalog.model.Report;
 import tmf.org.dsmapi.commons.exceptions.BadUsageException;
 import tmf.org.dsmapi.commons.exceptions.UnknownResourceException;
 import tmf.org.dsmapi.hub.Event;
-import tmf.org.dsmapi.hub.service.EventFacade;
-import tmf.org.dsmapi.hub.service.HubFacade;
-import tmf.org.dsmapi.hub.service.PublisherLocal;
+import tmf.org.dsmapi.hub.service.EventManager;
+import tmf.org.dsmapi.hub.service.HubManager;
+import tmf.org.dsmapi.hub.service.IPublisher;
 
 /**
  *
@@ -29,16 +29,16 @@ import tmf.org.dsmapi.hub.service.PublisherLocal;
  */
 @Stateless
 @Path("productInventory/admin")
-public class AdminFacadeREST {
+public class AdminResource {
 
     @EJB
-    ProductInventoryFacade manager;
+    ProductInventoryManager manager;
     @EJB
-    EventFacade eventManager;
+    EventManager eventManager;
     @EJB
-    HubFacade hubManager;
+    HubManager hubManager;
     @EJB
-    PublisherLocal publisher;
+    IPublisher publisher;
 
     /**
      *
@@ -120,7 +120,7 @@ public class AdminFacadeREST {
                 //Pause for 4 seconds to finish notification
                 Thread.sleep(4000);
             } catch (InterruptedException ex) {
-                Logger.getLogger(AdminFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AdminResource.class.getName()).log(Level.SEVERE, null, ex);
             }
             // remove event(s) binding to the resource
             List<Event> events = eventManager.findAll();
@@ -141,7 +141,7 @@ public class AdminFacadeREST {
             Response response = Response.ok(entity).build();
             return response;
         } catch (UnknownResourceException ex) {
-            Logger.getLogger(AdminFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminResource.class.getName()).log(Level.SEVERE, null, ex);
             Response response = Response.status(Response.Status.NOT_FOUND).build();
             return response;
         }

@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -29,29 +28,28 @@ import javax.ws.rs.core.UriInfo;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
-import tmf.org.dsmapi.catalog.Price;
-import tmf.org.dsmapi.catalog.RefInfo;
-import tmf.org.dsmapi.catalog.ProductInventory;
-import tmf.org.dsmapi.catalog.ProductInventoryFields;
-import tmf.org.dsmapi.catalog.ProductPrice;
-import tmf.org.dsmapi.catalog.Report;
-import tmf.org.dsmapi.catalog.TimeRange;
+import tmf.org.dsmapi.catalog.model.Price;
+import tmf.org.dsmapi.catalog.model.RefInfo;
+import tmf.org.dsmapi.catalog.model.ProductInventory;
+import tmf.org.dsmapi.catalog.model.ProductInventoryFields;
+import tmf.org.dsmapi.catalog.model.ProductPrice;
+import tmf.org.dsmapi.catalog.model.TimeRange;
 import tmf.org.dsmapi.commons.exceptions.BadUsageException;
 import tmf.org.dsmapi.commons.exceptions.TechnicalException;
 import tmf.org.dsmapi.commons.exceptions.UnknownResourceException;
 import tmf.org.dsmapi.commons.utils.PATCH;
-import tmf.org.dsmapi.hub.service.PublisherLocal;
+import tmf.org.dsmapi.hub.service.IPublisher;
 
 @Stateless
 @Path("productInventory/product")
-public class ProductInventoryFacadeREST {
+public class ProductInventoryResource {
 
     @EJB
-    ProductInventoryFacade manager;
+    ProductInventoryManager manager;
     @EJB
-    PublisherLocal publisher;
+    IPublisher publisher;
 
-    public ProductInventoryFacadeREST() {
+    public ProductInventoryResource() {
     }
 
     @POST
@@ -116,7 +114,7 @@ public class ProductInventoryFacadeREST {
         try {
             partialPI = mapper.readValue(jsonNode, ProductInventory.class);
         } catch (Exception ex) {
-            Logger.getLogger(ProductInventoryFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductInventoryResource.class.getName()).log(Level.SEVERE, null, ex);
             throw new TechnicalException();
         }
 

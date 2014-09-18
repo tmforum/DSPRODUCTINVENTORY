@@ -5,43 +5,40 @@
 package tmf.org.dsmapi.catalog.service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import tmf.org.dsmapi.catalog.ProductInventory;
-import tmf.org.dsmapi.catalog.ProductInventoryFields;
-import static tmf.org.dsmapi.catalog.ProductInventoryFields.DESCRIPTION;
-import static tmf.org.dsmapi.catalog.ProductInventoryFields.ISBUNDLE;
-import static tmf.org.dsmapi.catalog.ProductInventoryFields.ISCUSTOMERVISIBLE;
-import static tmf.org.dsmapi.catalog.ProductInventoryFields.NAME;
-import static tmf.org.dsmapi.catalog.ProductInventoryFields.PRODUCT_CHARACTERISTICS;
-import static tmf.org.dsmapi.catalog.ProductInventoryFields.PRODUCT_SERIAL_NUMBER;
-import static tmf.org.dsmapi.catalog.ProductInventoryFields.REALIZING_RESOURCES;
-import static tmf.org.dsmapi.catalog.ProductInventoryFields.START_DATE;
-import static tmf.org.dsmapi.catalog.ProductInventoryFields.STATUS;
-import tmf.org.dsmapi.catalog.Status;
+import tmf.org.dsmapi.catalog.model.ProductInventory;
+import tmf.org.dsmapi.catalog.model.ProductInventoryFields;
+import static tmf.org.dsmapi.catalog.model.ProductInventoryFields.DESCRIPTION;
+import static tmf.org.dsmapi.catalog.model.ProductInventoryFields.ISBUNDLE;
+import static tmf.org.dsmapi.catalog.model.ProductInventoryFields.ISCUSTOMERVISIBLE;
+import static tmf.org.dsmapi.catalog.model.ProductInventoryFields.NAME;
+import static tmf.org.dsmapi.catalog.model.ProductInventoryFields.PRODUCT_CHARACTERISTICS;
+import static tmf.org.dsmapi.catalog.model.ProductInventoryFields.PRODUCT_SERIAL_NUMBER;
+import static tmf.org.dsmapi.catalog.model.ProductInventoryFields.REALIZING_RESOURCES;
+import static tmf.org.dsmapi.catalog.model.ProductInventoryFields.START_DATE;
+import static tmf.org.dsmapi.catalog.model.ProductInventoryFields.STATUS;
 import tmf.org.dsmapi.commons.exceptions.BadUsageException;
 import tmf.org.dsmapi.commons.exceptions.ExceptionType;
 import tmf.org.dsmapi.commons.exceptions.UnknownResourceException;
-import tmf.org.dsmapi.commons.utils.TMFDate;
-import tmf.org.dsmapi.hub.service.PublisherLocal;
+import tmf.org.dsmapi.hub.service.IPublisher;
 
 /**
  *
  * @author pierregauthier
  */
 @Stateless
-public class ProductInventoryFacade extends AbstractFacade<ProductInventory> {
+public class ProductInventoryManager extends AbstractManager<ProductInventory> {
 
     @PersistenceContext(unitName = "DSProductInventoryPU")
     private EntityManager em;
     @EJB
-    PublisherLocal publisher;
+    IPublisher publisher;
 
-    public ProductInventoryFacade() {
+    public ProductInventoryManager() {
         super(ProductInventory.class);
     }
 

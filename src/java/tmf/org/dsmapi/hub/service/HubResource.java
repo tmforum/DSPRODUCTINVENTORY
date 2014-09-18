@@ -23,7 +23,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.codehaus.jackson.node.ObjectNode;
-import tmf.org.dsmapi.catalog.ProductInventory;
+import tmf.org.dsmapi.catalog.model.ProductInventory;
 import tmf.org.dsmapi.commons.exceptions.BadUsageException;
 import tmf.org.dsmapi.commons.exceptions.UnknownResourceException;
 import tmf.org.dsmapi.commons.utils.JSONMarshaller;
@@ -38,14 +38,14 @@ import tmf.org.dsmapi.hub.ProductInventoryEventTypeEnum;
  */
 @Stateless
 @Path("productInventory/hub")
-public class HubFacadeREST {
+public class HubResource {
 
     @EJB
-    HubFacade manager;
+    HubManager manager;
     @EJB
-    EventFacade hubEventManager;
+    EventManager eventManager;
 
-    public HubFacadeREST() {
+    public HubResource() {
     }
 
     @POST
@@ -136,9 +136,9 @@ public class HubFacadeREST {
     private Set<Event> findByCriteria(MultivaluedMap<String, String> criteria) {
         List<Event> resultList = null;
         if (criteria != null && !criteria.isEmpty()) {
-            resultList = hubEventManager.findByCriteria(criteria, Event.class);
+            resultList = eventManager.findByCriteria(criteria, Event.class);
         } else {
-            resultList = hubEventManager.findAll();
+            resultList = eventManager.findAll();
         }
         if (resultList == null) {
             return new LinkedHashSet<Event>();

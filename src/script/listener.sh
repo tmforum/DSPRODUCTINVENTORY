@@ -10,7 +10,10 @@ echo "+ +  ...listening at http://localhost:$1/listener"
 echo "+ +"       
 echo "+ +  ...logging to $2"
 echo "+"
-
-printf "listening at http://localhost:$1/listener\n\n" >>$2
-
-java -jar lib/DSMockService-1.0.jar $1 $2
+if [ -n $1 ]
+then 
+printf "listening at http://localhost:9000/listener\n\n" 
+else
+printf "listening at http://localhost:$1/listener\n\n" 
+fi
+java -classpath lib/commons-io-2.4.jar -jar lib/DSMockService-2.0.jar  $1

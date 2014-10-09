@@ -49,7 +49,7 @@ public class PublisherImpl implements IPublisher {
 
         if (event instanceof Event) {
             try {
-                Event hubEvent = (Event)event;
+                Event hubEvent = (Event) event;
                 hubEvent.setId(null);
                 eventManager.create(hubEvent);
                 id = hubEvent.getId();
@@ -63,8 +63,9 @@ public class PublisherImpl implements IPublisher {
         while (it.hasNext()) {
             Hub hub = it.next();
             clientEventPublisher.publish(hub, event);
+            System.out.println("Sending Event After, id of event : " + id);
         }
-        System.out.println("Sending Event After, id of event : "+id);
+        System.out.println("Sending Event FINISH");
     }
 
     @Override
@@ -72,7 +73,7 @@ public class PublisherImpl implements IPublisher {
         Event event = new Event();
         event.setResource(bean);
         event.setDate(date);
-        event.setReason(reason);        
+        event.setReason(reason);
         event.setEventType(ProductInventoryEventTypeEnum.ProductCreationNotification);
         publish(event);
 
@@ -139,5 +140,4 @@ public class PublisherImpl implements IPublisher {
         event.setEventType(ProductInventoryEventTypeEnum.ProductSynchronizationNotification);
         publish(event);
     }
-
 }

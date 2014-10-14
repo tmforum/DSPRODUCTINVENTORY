@@ -1,0 +1,185 @@
+{
+	"id": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",
+	"name": "inventoryApi",
+	"description": "TMForum RI-TMF",
+	"order": [],
+	"folders": [
+		{
+			"id": "a1e503a8-27cc-a951-a9c9-435ec7f5c99d",
+			"name": "hub",
+			"description": "",
+			"order": [
+				"76bc4ef4-b78f-4c32-f020-f15ec991da3d"
+			],
+			"collection_name": "inventoryApi",
+			"collection_id": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f"
+		},
+		{
+			"id": "5214b377-17f9-5663-3732-e0082a6bfe02",
+			"name": "product/{id}",
+			"description": "",
+			"order": [
+				"aa47724a-0384-10e2-149d-5f32f5b1499b",
+				"26a56da8-2f6e-9941-25da-f855b5c2f1bf",
+				"6f5621b6-5f01-4fc7-85e4-0da23db72724"
+			],
+			"collection_name": "inventoryApi",
+			"collection_id": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f"
+		},
+		{
+			"id": "5f6c2904-c11f-d12e-3a46-b8d949785202",
+			"name": "product",
+			"description": "",
+			"order": [
+				"9dc046bf-f35b-8634-898e-a639f0f3df6b",
+				"37ea4439-b830-2d35-0770-ee0b413de57c",
+				"590ec560-8234-f8bc-8789-9f43132deb75"
+			],
+			"collection_name": "inventoryApi",
+			"collection_id": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f"
+		}
+	],
+	"timestamp": 1410189819501,
+	"synced": false,
+	"requests": [
+		{
+			"id": "26a56da8-2f6e-9941-25da-f855b5c2f1bf",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"url": "http://localhost:8080/DSProductInventory/inventoryApi/product/:id",
+			"pathVariables": {
+				"id": "1"
+			},
+			"preRequestScript": "",
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"name": "update",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1412889924566,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",
+			"synced": false,
+			"rawModeData": "{\n    \"name\": \"Broadband\",\n    \"description\": \"Description of the instantiated broadband product MODIFIED\",\n    \"status\": \"suspended\",\n    \"isCustomerVisible\": false,\n    \"isBundle\" : true,\n    \"productSerialNumber\": \"Not useful in this case, we are describing a service\",\n    \"startDate\": \"2014-04-25T12:16:43.397+0000\",\n    \"orderDate\": \"2014-04-25T12:16:43.397+0000\",\n    \"terminationDate\": \"\",\n    \"productOffering\": \n    {\n            \"id\": \"http://server:port/catalogApi/productOffering/4\",\n            \"name\": \"My Quick BB Offer\"            \n    },\n    \"productSpecification\": \n    {\n            \"id\": \"http://server:port/catalogApi/productOffering/4\"\n    },\n    \"productCharacteristics\":[   \n    {   \n            \"name\":\"speed\",   \n            \"value\":\"16M\"  \n    }],   \n    \"productRelationships\":[   \n     {   \n             \"type\":\"contains\",   \n             \"product\":{   \n                     \"id\":\"http://server:port/inventoryApi/product/59\"\n              }   \n     }],\n    \"billingAccount\": [\n    {\n            \"id\": \"http://server:port/billingApi/billingAccount/678\",\n            \"name\" : \"account name\"\n    }],\n    \"relatedParties\": [\n    {\n            \"role\":\"partner\",   \n         \"reference\":\"http://serverlocation:port/partnerManagement/partner/42\"  \n    }],\n    \"agreement\" : [{\n        \"id\" : \"\"\n   }],\n   \"place\":\"http://map.google.com/.../1234112GDE\",\n    \"realizingResources\": [ \n    {\n            \"id\": \"not useful in this case, we are describing a service\"\n    }],\n    \"realizingServices\": [\n    {\n            \"id\": \"http://server:port/inventoryApi/service/46779\"\n    }],\n    \"productPrices\" : [{\n        \"name\" : \"\",\n       \"description\" : \"\",\n       \"validFor\":{\n               \"startDateTime\":\"2014-04-25T12:16:43.397+0000\",\n               \"endDateTime\":\"2014-04-25T12:16:43.397+0000\"\n       },\n       \"priceType\":\"recurring\",\n       \"recurringChargePeriod\":\"monthly\",\n       \"unitOfMeasure\":\"\",\n       \"price\":{\n               \"amount\":\"12\",\n               \"currency\":\"$\"\n       }\n    }]\n}\n"
+		},
+		{
+			"id": "37ea4439-b830-2d35-0770-ee0b413de57c",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"url": "http://localhost:8080/DSProductInventory/inventoryApi/product",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"time": 1412890022600,
+			"name": "create",
+			"description": "create a product",
+			"collectionId": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",
+			"responses": [],
+			"synced": false,
+			"rawModeData": "{\n    \"name\": \"Broadband\",\n    \"description\": \"Description of the instantiated broadband product\",\n    \"status\": \"pending active\",\n    \"isCustomerVisible\": true,\n    \"isBundle\" : true,\n    \"productSerialNumber\": \"Not useful in this case, we are describing a service\",\n    \"startDate\": \"2014-04-25T12:16:43.397+0000\",\n    \"orderDate\": \"2014-04-25T12:16:43.397+0000\",\n    \"terminationDate\": \"\",\n    \"productOffering\": \n    {\n            \"id\": \"http://server:port/catalogApi/productOffering/4\",\n            \"name\": \"My Quick BB Offer\"            \n    },\n    \"productSpecification\": \n    {\n            \"id\": \"http://server:port/catalogApi/productOffering/4\"\n    },\n    \"productCharacteristics\":[   \n    {   \n            \"name\":\"speed\",   \n            \"value\":\"16M\"  \n    }],   \n    \"productRelationships\":[   \n     {   \n             \"type\":\"contains\",   \n             \"product\":{   \n                     \"id\":\"http://server:port/inventoryApi/product/59\"\n              }   \n     }],\n    \"billingAccount\": [\n    {\n            \"id\": \"http://server:port/billingApi/billingAccount/678\",\n            \"name\" : \"account name\"\n    }],\n    \"relatedParties\": [\n    {\n            \"role\":\"partner\",   \n         \"reference\":\"http://serverlocation:port/partnerManagement/partner/42\"  \n    }],\n    \"agreement\" : [{\n        \"id\" : \"\"\n   }],\n   \"place\":\"http://map.google.com/.../1234112GDE\",\n    \"realizingResources\": [ \n    {\n            \"id\": \"not useful in this case, we are describing a service\"\n    }],\n    \"realizingServices\": [\n    {\n            \"id\": \"http://server:port/inventoryApi/service/46779\"\n    }],\n    \"productPrices\" : [{\n        \"name\" : \"\",\n       \"description\" : \"\",\n       \"validFor\":{\n               \"startDateTime\":\"2014-04-25T12:16:43.397+0000\",\n               \"endDateTime\":\"2014-04-25T12:16:43.397+0000\"\n       },\n       \"priceType\":\"recurring\",\n       \"recurringChargePeriod\":\"monthly\",\n       \"unitOfMeasure\":\"\",\n       \"price\":{\n               \"amount\":\"12\",\n               \"currency\":\"$\"\n       }\n    }]\n}\n"
+		},
+		{
+			"id": "590ec560-8234-f8bc-8789-9f43132deb75",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"url": "http://localhost:8080/DSProductInventory/inventoryApi/product",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"time": 1412890453170,
+			"name": "create ko",
+			"description": "create a product",
+			"collectionId": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",
+			"responses": [],
+			"synced": false,
+			"rawModeData": "{\n    \"id\": \"3\",\n    \"name\": \"Broadband\",\n    \"description\": \"Description of the instantiated broadband product\",\n    \"status\": \"pending active\",\n    \"isCustomerVisible\": true,\n    \"isBundle\" : true,\n    \"productSerialNumber\": \"Not useful in this case, we are describing a service\",\n    \"startDate\": \"2014-04-25T12:16:43.397+0000\",\n    \"orderDate\": \"2014-04-25T12:16:43.397+0000\",\n    \"terminationDate\": \"\",\n    \"productOffering\": \n    {\n            \"id\": \"http://server:port/catalogApi/productOffering/4\",\n            \"name\": \"My Quick BB Offer\"            \n    },\n    \"productSpecification\": \n    {\n            \"id\": \"http://server:port/catalogApi/productOffering/4\"\n    },\n    \"productCharacteristics\":[   \n    {   \n            \"name\":\"speed\",   \n            \"value\":\"16M\"  \n    }],   \n    \"productRelationships\":[   \n     {   \n             \"type\":\"contains\",   \n             \"product\":{   \n                     \"id\":\"http://server:port/inventoryApi/product/59\"\n              }   \n     }],\n    \"billingAccount\": [\n    {\n            \"id\": \"http://server:port/billingApi/billingAccount/678\",\n            \"name\" : \"account name\"\n    }],\n    \"relatedParties\": [\n    {\n            \"role\":\"partner\",   \n         \"reference\":\"http://serverlocation:port/partnerManagement/partner/42\"  \n    }],\n    \"agreement\" : [{\n        \"id\" : \"\"\n   }],\n   \"place\":\"http://map.google.com/.../1234112GDE\",\n    \"realizingResources\": [ \n    {\n            \"id\": \"not useful in this case, we are describing a service\"\n    }],\n    \"realizingServices\": [\n    {\n            \"id\": \"http://server:port/inventoryApi/service/46779\"\n    }],\n    \"productPrices\" : [{\n        \"name\" : \"\",\n       \"description\" : \"\",\n       \"validFor\":{\n               \"startDateTime\":\"2014-04-25T12:16:43.397+0000\",\n               \"endDateTime\":\"2014-04-25T12:16:43.397+0000\"\n       },\n       \"priceType\":\"recurring\",\n       \"recurringChargePeriod\":\"monthly\",\n       \"unitOfMeasure\":\"\",\n       \"price\":{\n               \"amount\":\"12\",\n               \"currency\":\"$\"\n       }\n    }]\n}\n"
+		},
+		{
+			"id": "6f5621b6-5f01-4fc7-85e4-0da23db72724",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"url": "http://localhost:8080/DSProductInventory/inventoryApi/product/:id",
+			"pathVariables": {
+				"id": "1"
+			},
+			"preRequestScript": "",
+			"method": "PATCH",
+			"data": [],
+			"dataMode": "raw",
+			"name": "patch",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1412889948717,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",
+			"synced": false,
+			"rawModeData": "{\n    \"status\": \"terminated\",\n    \"isCustomerVisible\": false,\n    \"productOffering\": \n    {\n            \"id\": \"http://server:port/catalogApi/productOffering/4\",\n            \"name\": \"My Quick BB Offer MODIFIED\"            \n    },\n    \"productCharacteristics\":[   \n    {   \n            \"name\":\"speed\",   \n            \"value\":\"64M\"  \n    }]\n}\n"
+		},
+		{
+			"id": "76bc4ef4-b78f-4c32-f020-f15ec991da3d",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"url": "http://localhost:8080/DSProductInventory/inventoryApi/hub",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"time": 1412890164099,
+			"name": "create",
+			"description": "create a hub",
+			"collectionId": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",
+			"responses": [],
+			"synced": false,
+			"rawModeData": "{\n    \"callback\":\"http://localhost:9000/listener\",\n    \"query\": \"eventType=ProductCreationNotification,ProductStatusChangeNotification,ProductValueChangeNotification,ProductDeletionNotification\"\n}\n"
+		},
+		{
+			"id": "9dc046bf-f35b-8634-898e-a639f0f3df6b",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"url": "http://localhost:8080/DSProductInventory/inventoryApi/product",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1412889075778,
+			"name": "find",
+			"description": "select all products",
+			"collectionId": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "aa47724a-0384-10e2-149d-5f32f5b1499b",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"url": "http://localhost:8080/DSProductInventory/inventoryApi/product/:id",
+			"preRequestScript": "",
+			"pathVariables": {
+				"id": "1"
+			},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1412890045421,
+			"name": "get",
+			"description": "select one products with id",
+			"collectionId": "73e2dd98-3ee7-2450-03da-f5bab28cbf8f",
+			"responses": [],
+			"synced": false
+		}
+	]
+}

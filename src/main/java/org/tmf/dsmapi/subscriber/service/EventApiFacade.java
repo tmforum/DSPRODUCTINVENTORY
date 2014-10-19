@@ -11,12 +11,12 @@ import org.tmf.dsmapi.subscriber.model.EventBag;
  * @author ecus6396
  */
 @Stateless
-public class EventFacade extends AbstractFacade<EventBag> {
+public class EventApiFacade extends AbstractFacade<EventBag> {
 
     @PersistenceContext(unitName = "DSProductInventoryPU")
     private EntityManager em;
 
-    public EventFacade() {
+    public EventApiFacade() {
         super(EventBag.class);
     }
 

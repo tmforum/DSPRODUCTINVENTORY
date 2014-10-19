@@ -11,7 +11,7 @@ import org.tmf.dsmapi.hub.model.Event;
  * @author pierregauthier
  */
 @Stateless
-public class EventFacade extends AbstractFacade<Event>{
+public class EventFacade extends AbstractFacade<Event> {
     
     @PersistenceContext(unitName = "DSProductInventoryPU")
     private EntityManager em;

@@ -26,8 +26,6 @@ import org.tmf.dsmapi.hub.model.Event;
 import org.tmf.dsmapi.hub.model.EventTypeEnum;
 import org.tmf.dsmapi.hub.model.Hub;
 import org.tmf.dsmapi.hub.service.EventFacade;
-import org.tmf.dsmapi.hub.service.EventFacade;
-import org.tmf.dsmapi.hub.service.HubFacade;
 import org.tmf.dsmapi.hub.service.HubFacade;
 
 /**

@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.tmf.dsmapi.subscriber.model.EventBag;
-import org.tmf.dsmapi.subscriber.service.EventFacade;
+import org.tmf.dsmapi.subscriber.service.EventApiFacade;
 
 @WebServlet("/subscriber/eventApi/current")
 public class Current extends HttpServlet {
 
     @EJB
-    EventFacade eventFacade;
+    EventApiFacade eventApiFacade;
 
     public Current() {
     }
@@ -28,7 +28,7 @@ public class Current extends HttpServlet {
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         DataOutputStream out = new DataOutputStream(byteOut);
 
-        List<EventBag> events = eventFacade.findAll();
+        List<EventBag> events = eventApiFacade.findAll();
         ServletOutputStream servletOut = response.getOutputStream();
         EventBag mostRecentNotif = null;
         for (int i = 0; events.size() > i; i++) {

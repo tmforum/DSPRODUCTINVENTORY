@@ -20,20 +20,6 @@ public class ApplicationConfig extends Application {
         resources.add(org.tmf.dsmapi.jaxrs.resource.AdminResource.class);
         resources.add(org.tmf.dsmapi.jaxrs.resource.HubResource.class);
         resources.add(org.tmf.dsmapi.jaxrs.resource.ProductResource.class);
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
-        // following code can be used to customize Jersey 1.x JSON provider:
         try {
             Class jacksonProvider = Class.forName("org.codehaus.jackson.jaxrs.JacksonJsonProvider");
             resources.add(jacksonProvider);

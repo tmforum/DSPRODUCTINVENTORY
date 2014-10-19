@@ -15,13 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.tmf.dsmapi.commons.exceptions.BadUsageException;
 import org.tmf.dsmapi.subscriber.model.EventBag;
-import org.tmf.dsmapi.subscriber.service.EventFacade;
+import org.tmf.dsmapi.subscriber.service.EventApiFacade;
 
 @WebServlet("/subscriber/eventApi/event")
 public class Event extends HttpServlet {
 
     @EJB
-    EventFacade manager;
+    EventApiFacade eventApiFacade;
     static final int COUNTER_KEY = 1;
 
     public Event() {
@@ -41,7 +41,7 @@ public class Event extends HttpServlet {
         }
         notification.setEvent(byteOut.toByteArray());
         try {
-            manager.create(notification);
+            eventApiFacade.create(notification);
             response.setStatus(201);
         } catch (BadUsageException ex) {
             Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,7 +57,7 @@ public class Event extends HttpServlet {
 
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         response.setContentType("application/json");
-        List<EventBag> notifications = manager.findAll();
+        List<EventBag> notifications = eventApiFacade.findAll();
         ServletOutputStream servletOut = response.getOutputStream();
         servletOut.write("[".getBytes());
         for (int i = 0; notifications.size() > i; i++) {
@@ -76,8 +76,8 @@ public class Event extends HttpServlet {
     
     public void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        List<EventBag> notifications = manager.findAll();
-        manager.removeAll();
+        List<EventBag> notifications = eventApiFacade.findAll();
+        eventApiFacade.removeAll();
         response.setStatus(200);
         response.getWriter().println(notifications.size()+" event(s) deleted");
     }    

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.tmf.dsmapi.commons.utils.CustomJsonDateSerializer;
 
 /**
  *
@@ -31,6 +32,7 @@ public class Hub implements Serializable {
     private Integer leaseSeconds;
     
     @Temporal(javax.persistence.TemporalType.DATE)
+    @JsonSerialize(using = CustomJsonDateSerializer.class)
     private Date dateTime;
 
     public String getId() {

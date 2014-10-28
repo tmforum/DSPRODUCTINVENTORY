@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.codehaus.jackson.annotate.JsonPropertyOrder;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.tmf.dsmapi.catalog.model.Product;
+import org.tmf.dsmapi.commons.utils.CustomJsonDateSerializer;
 
 /**
  *
@@ -34,6 +35,7 @@ public class Event implements Serializable {
     private String id;
     private String reason;
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonSerialize(using = CustomJsonDateSerializer.class)
     private Date dateEvent;
     private Product resource; //checl for object
     @Enumerated(value = EnumType.STRING)

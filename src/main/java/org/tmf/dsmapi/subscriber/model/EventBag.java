@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Temporal;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.tmf.dsmapi.commons.utils.CustomJsonDateSerializer;
 
 @Entity
 public class EventBag implements Serializable {
@@ -19,6 +21,7 @@ public class EventBag implements Serializable {
     @Lob
     private byte[] event;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @JsonSerialize(using = CustomJsonDateSerializer.class)
     private Date dateEvent;
 
     public String getId() {

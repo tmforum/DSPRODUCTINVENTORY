@@ -5,15 +5,13 @@
 package org.tmf.dsmapi.hub.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.tmf.dsmapi.commons.utils.CustomJsonDateSerializer;
 
 /**
  *
@@ -22,18 +20,13 @@ import org.tmf.dsmapi.commons.utils.CustomJsonDateSerializer;
 @Entity
 @XmlRootElement
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@Table(name="HubProductInventory")
 public class Hub implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-
-    private Integer leaseSeconds;
-    
-    @Temporal(javax.persistence.TemporalType.DATE)
-    @JsonSerialize(using = CustomJsonDateSerializer.class)
-    private Date dateTime;
 
     public String getId() {
         return id;

@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -28,6 +29,7 @@ import org.tmf.dsmapi.commons.utils.CustomJsonDateSerializer;
 @Entity
 @JsonPropertyOrder(value = {"event", "reason", "date", "eventType"})
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@Table(name="EventProductInventory")
 public class Event implements Serializable {
 
     @Id

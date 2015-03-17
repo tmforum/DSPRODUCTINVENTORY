@@ -1,2 +1,0 @@
-
-{"date":"2014-10-06T17:02:45.043+02:00","eventType":"ProductCreationNotification","id":"4","reason":"New Product Inventory","resource":{"description":"Description of the instantiated broadband product","id":"3","name":"Broadband","productOffering":{"id":"http://server:port/catalogApi/productOffering/4","name":"My Quick BB Offer"},"status":"pending active"}}

@@ -11,6 +11,8 @@ package org.tmf.dsmapi.product.model;
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonValue;
 
 
 /**
@@ -60,10 +62,12 @@ public enum State {
         value = v;
     }
 
+    @JsonValue
     public String value() {
         return value;
     }
 
+    @JsonCreator
     public static State fromValue(String v) {
         for (State c: State.values()) {
             if (c.value.equals(v)) {

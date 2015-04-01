@@ -57,6 +57,7 @@ public class ProductResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response create(Product entity) throws BadUsageException {
+        productInventoryFacade.verifyFirstStatus(entity.getStatus());
         productInventoryFacade.create(entity);
         publisher.createNotification(entity, new Date());
         // 201
@@ -148,10 +149,11 @@ public class ProductResource {
     @Path("{id}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response update(@PathParam("id") long id, Product entity) throws UnknownResourceException {
+    public Response update(@PathParam("id") long id, Product entity) throws UnknownResourceException, BadUsageException {
         Response response = null;
         Product productInventory = productInventoryFacade.find(id);
         if (productInventory != null) {
+            productInventoryFacade.verifyStatus(productInventory, entity);
             entity.setId(id);
             productInventoryFacade.edit(entity);
             publisher.valueChangedNotification(entity, new Date());
@@ -204,15 +206,6 @@ public class ProductResource {
             Response response = Response.status(Response.Status.NOT_FOUND).build();
             return response;
         }
-    }
-
-    @GET
-    @Path("proto")
-    @Produces({"application/json"})
-    public Product proto() {
-        Product productInventory = new Product();
-
-        return productInventory;
     }
 
     @PATCH

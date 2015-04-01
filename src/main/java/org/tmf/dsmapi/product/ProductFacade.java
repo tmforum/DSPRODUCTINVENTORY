@@ -14,6 +14,7 @@ import org.tmf.dsmapi.commons.exceptions.UnknownResourceException;
 import org.tmf.dsmapi.commons.utils.BeanUtils;
 import org.tmf.dsmapi.product.model.Product;
 import org.tmf.dsmapi.product.event.ProductEventPublisherLocal;
+import org.tmf.dsmapi.product.model.State;
 
 /**
  *
@@ -52,24 +53,35 @@ public class ProductFacade extends AbstractFacade<Product> {
         if (currentProduct == null) {
             throw new UnknownResourceException(ExceptionType.UNKNOWN_RESOURCE);
         }
+        
+        verifyStatus(currentProduct, partialProduct);
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.convertValue(partialProduct, JsonNode.class);
-        boolean isStatusModified = false;
-        String token = "status";
-        if (BeanUtils.verify(partialProduct, node, token)) {
-            stateModel.checkTransition(currentProduct.getStatus(), partialProduct.getStatus());
-            isStatusModified = true;
-        }
-
         partialProduct.setId(id);
         if (BeanUtils.patch(currentProduct, partialProduct, node)) {
             publisher.valueChangedNotification(currentProduct, new Date());
-                if(isStatusModified){
-                    publisher.statusChangedNotification(currentProduct, new Date());
-                }
         }
 
         return currentProduct;
     }
+    
+    public void verifyStatus(Product currentProduct, Product partialProduct) throws BadUsageException {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode node = mapper.convertValue(partialProduct, JsonNode.class);
+        if (BeanUtils.verify(partialProduct, node, "status")) {
+            stateModel.checkTransition(currentProduct.getStatus(), partialProduct.getStatus());
+            publisher.statusChangedNotification(currentProduct, new Date());
+//        } else {
+//            throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS, "state" + " is not found");
+        }
+    }
+
+    public void verifyFirstStatus(State newState) throws BadUsageException {
+        
+        if ( ! newState.name().equalsIgnoreCase(State.CREATED.name())) {
+            throw new BadUsageException(ExceptionType.BAD_USAGE_FLOW_TRANSITION, "status " + newState.value() +" is not the first state, attempt : "+State.CREATED.value());
+        }
+    }
+
 }

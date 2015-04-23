@@ -8,7 +8,7 @@ import org.tmf.dsmapi.commons.facade.AbstractFacade;
 @Stateless
 public class HubFacade extends AbstractFacade<Hub>{
     
-    @PersistenceContext(unitName = "DSProductPU")
+    @PersistenceContext(unitName = "DSCustomerPU")
     private EntityManager em;
 
     /**

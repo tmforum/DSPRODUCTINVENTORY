@@ -29,8 +29,8 @@
         <property name="Password" value="toto"></property>
         <property name="ServerName" value="localhost"></property>
         <property name="PortNumber" value="3306"></property>
-        <property name="databaseName" value="customer_management_ritmf"/>
-        <property name="URL" value="jdbc:mysql://localhost:3306/customer_management_ritmf"/>
+        <property name="databaseName" value="product_inventory_ritmf"/>
+        <property name="URL" value="jdbc:mysql://localhost:3306/product_inventory_ritmf"/>
         <property name="description" value="RI TMF POOL"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>

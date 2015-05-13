@@ -12,7 +12,7 @@ import org.tmf.dsmapi.commons.facade.AbstractFacade;
 @Stateless
 public class EventApiFacade extends AbstractFacade<EventBag> {
 
-    @PersistenceContext(unitName = "DSCustomerPU")
+    @PersistenceContext(unitName = "DSProductPU")
     private EntityManager em;
 
     public EventApiFacade() {

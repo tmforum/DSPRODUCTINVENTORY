@@ -10,9 +10,9 @@
                jaxb:extensionBindingPrefixes="hj orm annox"
                version="2.1">
 
-    <jaxb:bindings schemaLocation="model_customerManagement.xsd" node="/xs:schema"> 
+    <jaxb:bindings schemaLocation="model_productInventory.xsd" node="/xs:schema"> 
         <jaxb:schemaBindings>
-            <jaxb:package name="org.tmf.dsmapi.customer.model"/> 
+            <jaxb:package name="org.tmf.dsmapi.product.model"/> 
         </jaxb:schemaBindings> 
 
         <jaxb:globalBindings localScoping="toplevel">
@@ -36,17 +36,7 @@
             </annox:annotate>
         </jaxb:bindings>
         <!-- Add 'id' generation mode to main class (through hyperjaxb3) -->
-                <jaxb:bindings node="xs:complexType[@name='Customer']//xs:element[@name='id']">
-            <hj:id> 
-                <orm:generated-value strategy="AUTO"/> 
-            </hj:id>
-        </jaxb:bindings>
-                <jaxb:bindings node="xs:complexType[@name='CustomerAccount']//xs:element[@name='id']">
-            <hj:id> 
-                <orm:generated-value strategy="AUTO"/> 
-            </hj:id>
-        </jaxb:bindings>
-                <jaxb:bindings node="xs:complexType[@name='PaymentMean']//xs:element[@name='id']">
+                <jaxb:bindings node="xs:complexType[@name='Product']//xs:element[@name='id']">
             <hj:id> 
                 <orm:generated-value strategy="AUTO"/> 
             </hj:id>

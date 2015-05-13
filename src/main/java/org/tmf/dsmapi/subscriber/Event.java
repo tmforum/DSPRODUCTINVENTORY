@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.tmf.dsmapi.commons.exceptions.BadUsageException;
+import org.tmf.dsmapi.subscriber.EventBag;
 
 @WebServlet("/subscriber/api/event")
 public class Event extends HttpServlet {

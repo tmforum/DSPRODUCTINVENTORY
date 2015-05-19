@@ -14,7 +14,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import org.tmf.dsmapi.commons.exceptions.BadUsageException;
 import org.tmf.dsmapi.commons.exceptions.UnknownResourceException;
 import org.tmf.dsmapi.commons.jaxrs.Report;
@@ -31,8 +33,8 @@ public class ProductAdminResource {
     ProductFacade productInventoryFacade;
     @EJB
     ProductEventFacade eventFacade;
-    @EJB
-    ProductEventPublisherLocal publisher;
+//    @EJB
+//    ProductEventPublisherLocal publisher;
 
     @GET
     @Produces({"application/json"})
@@ -50,21 +52,25 @@ public class ProductAdminResource {
     @POST
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response post(List<Product> entities) {
+    public Response post(List<Product> entities, @Context UriInfo info) throws UnknownResourceException {
 
         if (entities == null) {
             return Response.status(Response.Status.BAD_REQUEST.getStatusCode()).build();
         }
 
         int previousRows = productInventoryFacade.count();
-        int affectedRows;
+        int affectedRows=0;
 
         // Try to persist entities
         try {
-            affectedRows = productInventoryFacade.create(entities);
             for (Product entitie : entities) {
-                publisher.createNotification(entitie, new Date());
+                productInventoryFacade.create(entitie);
+                entitie.setHref(info.getAbsolutePath() + "/" + Long.toString(entitie.getId()));
+                productInventoryFacade.edit(entitie);
+                affectedRows = affectedRows + 1;
+//                publisher.createNotification(entitie, new Date());
             }
+//            affectedRows = productInventoryFacade.create(entities);
         } catch (BadUsageException e) {
             return Response.status(Response.Status.BAD_REQUEST.getStatusCode()).build();
         }
@@ -89,9 +95,9 @@ public class ProductAdminResource {
         if (productInventory != null) {
             entity.setId(id);
             productInventoryFacade.edit(entity);
-            publisher.valueChangedNotification(entity, new Date());
-            // 201 OK + location
-            response = Response.status(Response.Status.CREATED).entity(entity).build();
+//            publisher.valueChangedNotification(entity, new Date());
+            // 200 OK + location
+            response = Response.status(Response.Status.OK).entity(entity).build();
 
         } else {
             // 404 not found
@@ -143,7 +149,7 @@ public class ProductAdminResource {
         Product entity = productInventoryFacade.find(id);
 
         // Event deletion
-        publisher.deletionNotification(entity, new Date());
+//        publisher.deletionNotification(entity, new Date());
         try {
             //Pause for 4 seconds to finish notification
             Thread.sleep(4000);

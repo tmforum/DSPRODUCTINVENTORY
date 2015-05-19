@@ -59,7 +59,7 @@ public class ProductResource {
     public Response create(Product entity, @Context UriInfo info) throws BadUsageException, UnknownResourceException {
         productInventoryFacade.checkCreation(entity);
         productInventoryFacade.create(entity);
-        entity.setHref(info.getAbsolutePath()+ "/" + Long.toString(entity.getId()));
+        entity.setHref(info.getAbsolutePath() + "/" + Long.toString(entity.getId()));
         productInventoryFacade.edit(entity);
         publisher.createNotification(entity, new Date());
         // 201
@@ -159,8 +159,8 @@ public class ProductResource {
             entity.setId(id);
             productInventoryFacade.edit(entity);
             publisher.valueChangedNotification(entity, new Date());
-            // 201 OK + location
-            response = Response.status(Response.Status.CREATED).entity(entity).build();
+            // 200 OK + location
+            response = Response.status(Response.Status.OK).entity(entity).build();
 
         } else {
             // 404 not found
@@ -179,35 +179,29 @@ public class ProductResource {
      */
     @DELETE
     @Path("{id}")
-    public Response delete(@PathParam("id") long id) {
+    public Response delete(@PathParam("id") long id) throws UnknownResourceException {
+        Product entity = productInventoryFacade.find(id);
+
+        // Event deletion
+        publisher.deletionNotification(entity, new Date());
         try {
-            Product entity = productInventoryFacade.find(id);
-
-            // Event deletion
-            publisher.deletionNotification(entity, new Date());
-            try {
-                //Pause for 4 seconds to finish notification
-                Thread.sleep(4000);
-            } catch (InterruptedException ex) {
-                // Log someting to the console (should never happen)
-            }
-            // remove event(s) binding to the resource
-            List<ProductEvent> events = eventFacade.findAll();
-            for (ProductEvent event : events) {
-                if (event.getResource().getId().equals(id)) {
-                    eventFacade.remove(event.getId());
-                }
-            }
-            //remove resource
-            productInventoryFacade.remove(id);
-
-            // 200 
-            Response response = Response.ok(entity).build();
-            return response;
-        } catch (UnknownResourceException ex) {
-            Response response = Response.status(Response.Status.NOT_FOUND).build();
-            return response;
+            //Pause for 4 seconds to finish notification
+            Thread.sleep(4000);
+        } catch (InterruptedException ex) {
+            // Log someting to the console (should never happen)
         }
+        // remove event(s) binding to the resource
+        List<ProductEvent> events = eventFacade.findAll();
+        for (ProductEvent event : events) {
+            if (event.getResource().getId().equals(id)) {
+                eventFacade.remove(event.getId());
+            }
+        }
+        //remove resource
+        productInventoryFacade.remove(id);
+
+        // 204
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     @PATCH
@@ -217,9 +211,9 @@ public class ProductResource {
     public Response patch(@PathParam("id") long id, Product partialProduct) throws BadUsageException, UnknownResourceException {
         Response response = null;
         Product currentProduct = productInventoryFacade.updateAttributs(id, partialProduct);
-        
-        // 201 OK + location
-        response = Response.status(Response.Status.CREATED).entity(currentProduct).build();
+
+        // 200 OK + location
+        response = Response.status(Response.Status.OK).entity(currentProduct).build();
 
         return response;
     }

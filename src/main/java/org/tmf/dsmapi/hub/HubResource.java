@@ -31,8 +31,8 @@ public class HubResource {
     public Response create(Hub entity) throws BadUsageException {
         entity.setId(null);
         hubFacade.create(entity);
-        Response response = Response.ok(entity).build();
-        return response;
+        //201
+        return Response.status(Response.Status.CREATED).entity(entity).build();
     }
 
     @DELETE
@@ -52,8 +52,15 @@ public class HubResource {
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") String id) throws UnknownResourceException {
-        hubFacade.remove(id);
+    public Response remove(@PathParam("id") String id) throws UnknownResourceException {
+        Hub hub = hubFacade.find(id);
+        if (null == hub) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            hubFacade.remove(id);
+            // 204
+            return Response.status(Response.Status.NO_CONTENT).build();
+        }
     }
 
     @GET

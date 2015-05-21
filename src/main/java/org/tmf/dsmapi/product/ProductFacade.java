@@ -38,24 +38,32 @@ public class ProductFacade extends AbstractFacade<Product> {
         return em;
     }
 
-    public void checkCreation(Product newProduct) throws BadUsageException {
+    public void checkCreation(Product newProduct) throws BadUsageException, UnknownResourceException {
         if (newProduct.getId() != null) {
-            throw new BadUsageException(ExceptionType.BAD_USAGE_GENERIC, "While creating Product, id must be null");
+            if (this.find(newProduct.getId()) != null) {
+                throw new BadUsageException(ExceptionType.BAD_USAGE_GENERIC,
+                        "Duplicate Exception, Product with same id :" + newProduct.getId() + " alreay exists");
+            }
         }
+
         //verify first status
-        if (!newProduct.getStatus().name().equalsIgnoreCase(State.CREATED.name())) {
-            throw new BadUsageException(ExceptionType.BAD_USAGE_FLOW_TRANSITION, "status " + newProduct.getStatus().value() + " is not the first state, attempt : " + State.CREATED.value());
+        if (null == newProduct.getStatus()) {
+            newProduct.setStatus(State.Created);
+        } else {
+            if (!newProduct.getStatus().name().equalsIgnoreCase(State.Created.name())) {
+                throw new BadUsageException(ExceptionType.BAD_USAGE_FLOW_TRANSITION, "status " + newProduct.getStatus().value() + " is not the first state, attempt : " + State.Created.value());
+            }
         }
-        
+
     }
-    
-    public Product updateAttributs(long id, Product partialProduct) throws UnknownResourceException, BadUsageException {
+
+    public Product patchAttributs(long id, Product partialProduct) throws UnknownResourceException, BadUsageException {
         Product currentProduct = this.find(id);
 
         if (currentProduct == null) {
             throw new UnknownResourceException(ExceptionType.UNKNOWN_RESOURCE);
         }
-        
+
         verifyStatus(currentProduct, partialProduct);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -67,7 +75,7 @@ public class ProductFacade extends AbstractFacade<Product> {
 
         return currentProduct;
     }
-    
+
     public void verifyStatus(Product currentProduct, Product partialProduct) throws BadUsageException {
         if (null != partialProduct.getStatus()) {
             stateModel.checkTransition(currentProduct.getStatus(), partialProduct.getStatus());

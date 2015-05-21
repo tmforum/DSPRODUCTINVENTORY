@@ -96,7 +96,7 @@ public class ProductEventPublisher implements ProductEventPublisherLocal {
     public void statusChangedNotification(Product bean, Date date) {
         ProductEvent event = new ProductEvent();
         event.setEventTime(date);
-        event.setEventType(ProductEventTypeEnum.ProductStatutChangeNotification);
+        event.setEventType(ProductEventTypeEnum.ProductStatusChangeNotification);
         event.setResource(bean);
         publish(event);
     }

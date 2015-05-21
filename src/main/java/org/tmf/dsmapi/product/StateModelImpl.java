@@ -22,26 +22,21 @@ public class StateModelImpl extends StateModelBase<State> {
     @Override
     protected void draw() {
         // First
-        fromFirst(State.CREATED).to(
-                State.PENDING_ACTIVE,
-                State.ACTIVE);
+        fromFirst(State.Created).to(State.Pending_active,
+                State.Active);
 
         // Somewhere
-        from(State.PENDING_ACTIVE).to(
-                State.ABORTED,
-                State.CANCELLED);
-        from(State.ACTIVE).to(
-                State.SUSPENDED,
-                State.TERMINATED,
-                State.PENDING_TERMINATE);       
-        from(State.SUSPENDED).to(
-                State.ACTIVE);
-        from(State.PENDING_TERMINATE).to(
-                State.TERMINATED);
+        from(State.Pending_active).to(State.Aborted,
+                State.Cancelled);
+        from(State.Active).to(State.Suspended,
+                State.Terminated,
+                State.Pending_terminate);       
+        from(State.Suspended).to(State.Active);
+        from(State.Pending_terminate).to(State.Terminated);
 
         // Final
-        from(State.ABORTED);
-        from(State.CANCELLED);
-        from(State.TERMINATED);
+        from(State.Aborted);
+        from(State.Cancelled);
+        from(State.Terminated);
     }
 }

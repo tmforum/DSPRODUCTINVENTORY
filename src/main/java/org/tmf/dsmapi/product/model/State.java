@@ -41,21 +41,21 @@ import org.codehaus.jackson.annotate.JsonValue;
 public enum State {
 
     @XmlEnumValue("Created")
-    CREATED("Created"),
+    Created("Created"),
     @XmlEnumValue("Pending_active")
-    PENDING_ACTIVE("Pending_active"),
+    Pending_active("Pending_active"),
     @XmlEnumValue("Aborted")
-    ABORTED("Aborted"),
+    Aborted("Aborted"),
     @XmlEnumValue("Cancelled")
-    CANCELLED("Cancelled"),
+    Cancelled("Cancelled"),
     @XmlEnumValue("Active")
-    ACTIVE("Active"),
+    Active("Active"),
     @XmlEnumValue("Pending_terminate")
-    PENDING_TERMINATE("Pending_terminate"),
+    Pending_terminate("Pending_terminate"),
     @XmlEnumValue("Terminated")
-    TERMINATED("Terminated"),
+    Terminated("Terminated"),
     @XmlEnumValue("Suspended")
-    SUSPENDED("Suspended");
+    Suspended("Suspended");
     private final String value;
 
     State(String v) {

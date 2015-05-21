@@ -83,12 +83,12 @@ public class ProductEvent implements Serializable {
 
     @JsonAutoDetect(fieldVisibility = ANY)
     class EventBody {
-        private Product productInventory;
-        public Product getProductInventory() {
-            return productInventory;
+        private Product product;
+        public Product getProduct() {
+            return product;
         }
-        public EventBody(Product productInventory) {
-            this.productInventory = productInventory;
+        public EventBody(Product product) {
+            this.product = product;
         }
     }
 

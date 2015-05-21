@@ -11,35 +11,35 @@ public class WorkflowValidator {
         boolean valid = false;
 
         switch (current) {
-            case CREATED:
+            case Created:
                 switch (next) {
-                    case PENDING_ACTIVE:
-                    case ACTIVE:
+                    case Pending_active:
+                    case Active:
                         valid = true;
                         break;
                 }
                 break;
-            case ACTIVE:
+            case Active:
                 switch (next) {
-                    case SUSPENDED:
-                    case PENDING_TERMINATE:
-                    case TERMINATED:
+                    case Suspended:
+                    case Pending_terminate:
+                    case Terminated:
                         valid = true;
                         break;
                 }
                 break;
-            case PENDING_ACTIVE:
+            case Pending_active:
                 switch (next) {
-                    case ABORTED:
-                    case ACTIVE:
-                    case CANCELLED:
+                    case Aborted:
+                    case Active:
+                    case Cancelled:
                         valid = true;
                         break;
                 }
                 break;
-            case PENDING_TERMINATE:
+            case Pending_terminate:
                 switch (next) {
-                    case TERMINATED:
+                    case Terminated:
                         valid = true;
                         break;
                 }

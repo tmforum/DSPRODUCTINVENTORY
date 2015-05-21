@@ -10,7 +10,7 @@ public enum ProductEventTypeEnum {
     ProductUpdateNotification("ProductUpdateNotification"),
     ProductDeletionNotification("ProductDeletionNotification"),
     ProductValueChangeNotification("ProductValueChangeNotification"),
-    ProductStatutChangeNotification("ProductStatutChangeNotification");
+    ProductStatusChangeNotification("ProductStatusChangeNotification");
 
     private String text;
 
